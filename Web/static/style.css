@@ -1,0 +1,59 @@
+body, html{
+	background-color: #581845;
+	background: url("/static/images/2.jpg");
+	background-repeat: no-repeat;
+	background-size: 1920px 1080px;
+	overflow-x:hidden;
+}
+a:hover, focus{
+color:  black;
+text-decoration:none;
+}
+a {
+color: #738084;
+}
+
+footer{
+background-color: rgba(0,0,0,0.1);
+color: #738084;
+font-size:17px;
+}
+h1{
+	color: #738084;
+	font-family: Charcoal;
+}	
+.dropdown-toggle{
+	text-align:center;
+}
+
+.dropdown-menu-center{
+  left: 50% !important;
+  right: auto !important;
+  text-align: center !important;
+  transform: translate(-50%, 0) !important;
+}
+.title{
+    text-align: center;
+}
+.lefts{
+	position: absolute;
+	right: 0;	
+}
+.trans:hover {
+    transition: all 0.5s ease 0s;
+    transform: scale(1.2);
+}
+.trans {
+    font-size: 25px;
+    transition: all 0.5s ease 0s;
+    transform: scale(1);
+}
+
+.rightf{
+bottom: 0;
+position: absolute;
+}
+.navbar a {
+color:white;
+}
+

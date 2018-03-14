@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# To protect backups *most* of the time, we remount the backup partition
+# as readwrite only when backing up and put it back to readonly mode
+# once we're finished.
+
+trap "
+  mount -o remount,ro /backup;
+" INT QUIT TERM EXIT
+
+mount -o remount,rw /backup
+
+rsyncbtrfs backup --bind-mount / /backup/sys \
+  --exclude='/tmp/**' --exclude='/var/lib/mock/**' \
+  --exclude='/home/build/**' --exclude='/home/wine/**' \
+  --exclude='/var/cache/mock/**' --exclude='/var/tmp/**' \
+  --exclude='/var/cache/yum/**' --exclude='/media/**' \
+  --exclude='/backup/**'
+rsyncbtrfs backup /home/user /backup/home \
+  --exclude='/Downloads/**' --exclude='/tmp/**'
+rsyncbtrfs backup /boot /backup/boot

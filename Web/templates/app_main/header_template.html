@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header_blue</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+	{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> </head> <body>
+    <div>
+        <div class="header-blue">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header"><a class="navbar-brand navbar-link" href="{% url 'app_main:index' %}"  >Vu Internetinis Puslapių Archyvas</a>
+                    </div>
+					<div class="lefts">
+					<div class="navbar-header"><a class="navbar-brand navbar-link" href="{% url 'app_main:index' %}">Pasirinkti 
+kitą domeną</a>
+                    </div>
+					<div class="navbar-header"><a class="navbar-brand navbar-link" href="{% url 'app_main:page_data' page_id %}">Pasirinkti kitą datą</a>
+                    </div>
+					</div>
+                </div>
+				</div>
+				</div>
+            </nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {% block header %} {% endblock %} </body>
+</html>

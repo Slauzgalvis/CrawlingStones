@@ -1,0 +1,71 @@
+{% extends 'app_main/body.html' %}
+{% block main %}
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+
+ <script>
+       $(document).ready( function () {
+            var table = $('#table').DataTable({
+                "columnDefs": [ {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                } ],
+                "order": [[ 1, 'asc' ]],
+                "iDisplayLength": 10,
+                {# "dom": 'flrti<"center"p>',#}
+                "sDom": '<"row view-filter"<"col-sm-4"><"col-sm-4"<"pull-left"f><"pull-right"l><"clearfix">>>ti<"row view-pager"<"col-sm-12"<"text-center"p>>>',
+                padding: true,
+                "oLanguage": {
+                    "sEmptyTable":      "Lentelėje nėra duomenų",
+                    "sInfo":            "Rodomi įrašai nuo _START_ iki _END_ iš _TOTAL_ įrašų",
+                    "sInfoEmpty":       "Rodomi įrašai nuo 0 iki 0 iš 0",
+                    "sInfoFiltered":    "(atrinkta iš _MAX_ įrašų)",
+                    "sInfoPostFix":     "",
+                    "sInfoThousands":   " ",
+                    "sLengthMenu":      "Rodyti _MENU_ įrašus",
+                    "sLoadingRecords":  "Įkeliama...",
+                    "sProcessing":      "Apdorojama...",
+                    "sSearch":          "Ieškoti:",
+                    "sThousands":       " ",
+                    "sUrl":             "",
+                    "sZeroRecords":     "Įrašų nerasta",
+
+                    "oPaginate": {
+                        "sFirst": "Pirmas",
+                        "sPrevious": "Ankstesnis &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+                        "sNext": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tolimesnis",
+                        "sLast": "Paskutinis"
+                    }
+                }
+            });
+
+            table.on( 'order.dt search.dt', function () {
+                table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                    cell.innerHTML = i+1;
+                } );
+            } ).draw();
+        });
+    </script>
+
+    <h2 class='title'>{{ selected_page }}</h2>
+    <center><a href="{% url 'app_main:index' %}"><p class="trans" style="font-size:20px">Grįžti į puslapių sąrašą</p></a><center>
+    <br>
+
+<table id="table" class="display table tablebig table-bordered table-responsive table-hover" style="width:35%">
+       <thead>
+       <tr>
+           <th style="text-align: center"><h4>Archyvavimo datos</h4><i class="fa fa-fw fa-sort"></i></th>
+       </tr>
+       </thead>
+
+       <tbody>
+            {% for page in selected_page.pagedata_set.all %}
+                <tr>
+                    <td><h4 class = 'title'><a href="{% url 'app_main:display_page' page.id page_id%}"><p class="trans" style="font-size:20px"> {{ page.snapshots_date }}</p></a></h4></td>
+                </tr>
+            {% endfor %}
+       </tbody>
+   </table>
+{% endblock %}

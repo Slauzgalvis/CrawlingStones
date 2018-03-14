@@ -1,0 +1,8 @@
+{% extends 'app_main/main_template.html' %}
+{% block main %}
+{% for page in all_pages %}
+    <h4 class="title trans"  ><a href="{% url 'app_main:page_data' page.id %}">{{ page.page_name }}</a></h4>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

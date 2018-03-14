@@ -1,0 +1,7 @@
+{% extends 'app_main/body.html' %}
+{% block main %}
+<h1> This is a main page</h1>
+{% for page in all_pages %}
+    <li>{{ page.id }} {{ page.page_name }} - <a href="{% url 'app_main:page_data' page.id %}">{{ page.page_url }}</a></li>
+{% endfor %}
+{% endblock %}
